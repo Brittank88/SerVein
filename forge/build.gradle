@@ -22,6 +22,7 @@ configurations {
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentForge.extendsFrom common
+    archivesBaseName = rootProject.archives_base_name + "-forge"
 }
 
 dependencies {
@@ -31,6 +32,9 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+
+    // MidnightLib
+    modImplementation include("maven.modrinth:midnightlib:${rootProject.midnightlib_version}-forge")
 }
 
 processResources {

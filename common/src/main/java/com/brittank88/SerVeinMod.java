@@ -1,22 +1,31 @@
 package com.brittank88;
 
-import com.google.common.base.Suppliers;
-import dev.architectury.registry.CreativeTabRegistry;
-import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.Registries;
-import dev.architectury.registry.registries.RegistrySupplier;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import com.brittank88.config.SerVeinConfig;
+import eu.midnightdust.lib.config.MidnightConfig;
+import org.apache.commons.lang3.time.DurationFormatUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.function.Supplier;
+import java.time.Duration;
+import java.time.Instant;
 
 public class SerVeinMod {
     public static final String MOD_ID = "servein";
+    public static final String MOD_NAME = "SerVein";
+
+    public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
     
     public static void init() {
-        System.out.println(SerVeinExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
+        Instant instant = Instant.now();
+        LOGGER.info("Loading " + MOD_NAME + "...");
+
+        SerVeinExpectPlatform.initConfig(MOD_ID, SerVeinConfig.class);
+
+        LOGGER.info(
+                "Loaded " + MOD_NAME + " in " + DurationFormatUtils.formatDurationWords(
+                        Duration.between(instant, Instant.now()).toMillis(),
+                        true, true
+                ) + "ms."
+        );
     }
 }

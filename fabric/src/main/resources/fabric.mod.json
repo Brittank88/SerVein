@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "icon": "assets/servein/icon.png",
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "com.brittank88.fabric.SerVeinModFabric"

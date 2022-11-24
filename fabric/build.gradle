@@ -11,12 +11,17 @@ loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 }
 
+repositories {
+    maven { url "https://maven.terraformersmc.com/releases" }
+}
+
 configurations {
     common
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentFabric.extendsFrom common
+    archivesBaseName = rootProject.archives_base_name + "-fabric"
 }
 
 dependencies {
@@ -29,6 +34,12 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
     common(project(path: ":fabric-like", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":fabric-like", configuration: "transformProductionFabric")) { transitive false }
+
+    // MidnightLib
+    modImplementation include("maven.modrinth:midnightlib:${rootProject.midnightlib_version}-fabric")
+
+    // ModMenu
+    modImplementation ("com.terraformersmc:modmenu:${rootProject.mod_menu_version}")
 }
 
 processResources {

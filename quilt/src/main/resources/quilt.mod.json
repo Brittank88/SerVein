@@ -13,7 +13,7 @@
     "license": "MIT",
     "icon": "assets/servein/icon.png",
     "intermediate_mappings": "net.fabricmc:intermediary",
-    "environment": "server",
+    "environment": "*",
     "entrypoints": {
       "init": [
         "com.brittank88.quilt.SerVeinModQuilt"
